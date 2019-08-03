@@ -4,6 +4,16 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 var $searchBtn = $("#search");
+var $date = $("#date");
+var $country = $("#country");
+var $area = $("#area");
+var $location = $("#location");
+var $activity = $("#activity");
+var $species = $("#species");
+var $type = $("#type");
+var $injury = $("#injury");
+var $sumbitAddBtn = $("#submit1");
+
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -41,16 +51,17 @@ var API = {
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
     var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+      var $p = $("<p>")
+        .text(example.date + " "+ example.county+ " "+example.area+ " "+ example.location +
+        "" + example.activity+ " "+ example.species+ " "+ example.type+ " "+example.injury)
+        
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
           "data-id": example.id
         })
-        .append($a);
+        .append($p);
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
@@ -105,11 +116,21 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    // date: $exampleText.val().trim(),
+    // description: $exampleDescription.val().trim()
+    date: $date.val().trim(),
+    country: $country.val().trim(),
+    area: $area.val().trim(),
+    location: $location.val().trim(),
+    activity: $activity.val().trim(),
+    species: $species.val().trim(),
+    type: $type.val().trim(),
+    injury: $injury.val().trim(),
+
   };
 
-  if (!(example.text && example.description)) {
+  if (!(example.date && example.country && example.area && example.location
+     && example.activity && example.species && example.type && example.injury)) {
     alert("You must enter an example text and description!");
     return;
   }
@@ -117,9 +138,17 @@ var handleFormSubmit = function(event) {
   API.saveExample(example).then(function() {
     refreshExamples();
   });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
+  
+  $date.val("");
+  $country.val("");
+  $area.val("");
+  $location.val("");
+  $activity.val("");
+  $species.val("");
+  $type.val("");
+  $injury.val("");
+  // $exampleText.val("");
+  // $exampleDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -138,3 +167,4 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 $searchBtn.on("click", handleSearchBtnClick);
+$sumbitAddBtn .on("click", handleFormSubmit);

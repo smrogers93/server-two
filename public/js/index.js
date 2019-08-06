@@ -3,6 +3,7 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var $searchBtn = $("#search");
 var $date = $("#date");
 var $country = $("#country");
 var $area = $("#area");
@@ -37,6 +38,12 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  searchExample: function(query) {
+    return $.ajax({
+      url: "api/search/?searchString=" + query,
+      type: "GET"
+    });
   }
 };
 
@@ -68,6 +75,39 @@ var refreshExamples = function() {
     $exampleList.empty();
     $exampleList.append($examples);
   });
+};
+
+var handleSearchBtnClick = function(event) {
+  event.preventDefault();
+  var inputText = $("#example-text").val();
+
+  API.searchExample(inputText).then(function(data) {
+    var $examples = data.map(function(example) {
+      var $a = $("<a>")
+        .text(example.text)
+        .attr("href", "/example/" + example.id);
+
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": example.id
+        })
+        .append($a);
+
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    $exampleList.empty();
+    $exampleList.append($examples);
+  });
+
+  // then do some shit with the results
 };
 
 // handleFormSubmit is called whenever we submit a new example
@@ -126,4 +166,5 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+$searchBtn.on("click", handleSearchBtnClick);
 $sumbitAddBtn .on("click", handleFormSubmit);

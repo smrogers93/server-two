@@ -1,4 +1,6 @@
 var db = require("../models/example.js");
+var Op = db.Sequelize.Op;
+
 
 module.exports = function(app) {
   // Get all examples
@@ -30,6 +32,26 @@ module.exports = function(app) {
     var conditionArray = [req.params.country, req.params.area, req.params.location];
     db.SharkAttacks.take(traitArray, conditionArray, function(results) {
       res.json(results);
+    });
+  });
+
+  app.get("/api/examples", function(req, res) {
+    db.Example.findOne({}).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  });
+
+  app.get("/api/search", function(req, res) {
+    var searchString = req.query.searchString;
+    // find the records that match the searchString
+    db.Example.findAll({
+      where: {
+        text: {
+          [Op.like]: "%" + searchString + "%"
+        }
+      }
+    }).then(function(dbResult) {
+      res.json(dbResult);
     });
   });
 

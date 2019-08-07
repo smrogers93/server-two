@@ -1,4 +1,7 @@
+<<<<<<< HEAD:config/config.js
 
+=======
+>>>>>>> 7ebf85a81fed81872a7b8f335be86582e8f35135:config/config.js
 module.exports = {
   "development": {
     "username": "root",

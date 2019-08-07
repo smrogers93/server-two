@@ -1,3 +1,17 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+input[type="email"]:focus:invalid,
+textarea[name="body"]:focus:invalid,
+input[name="name"]:focus:invalid {
+outline-color: red;
+transition: outline-color 5s;
+}
+
+input[type="email"]:focus:valid,
+textarea[name="body"]:focus:valid,
+input[name="name"]:focus:valid {
+outline-color: green;
+transition: outline-color .4s;
+}

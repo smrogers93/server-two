@@ -1,98 +1,16 @@
-<div id="home">
-  <div class="container">
+<div id="posting_page">
+  <div class="container mb-4 ">
     <div class="row">
       <div class="col-12">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-              placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+        <h1 class="text-center">Welcome to sharnado!</h1>
+        <div class="container text-center">
+      <div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div><a href="/search"><button class="btn btn-danger btn-lg">Go to search</button></a>
+      <a href="/post"><button class="btn btn-danger btn-md">Post information</button></a>
+      </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="container">
-  <h3 class="mb-4"> Enter Your evidencee</h3>
-  <div class="row">
-    <div class="col-3">
-      <form class="clearfix mb-4" action="POST">
-        <div class="form-group">
-          <label for="date">Date DD/MM/YY</label>
-          <input type="text" id="date" class="form-control" aria-describedby="date" placeholder="Enter date">
-        </div>
-    </div>
-    <div class="col-3">
-      <div class="form-group">
-        <label for="country">Country </label>
-        <input type="text" id="country" class="form-control" aria-describedby="country" placeholder="Enter Country">
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="form-group">
-        <label for="area">Area (state) </label>
-        <input type="text" id="area" class="form-control" aria-describedby="area" placeholder="Enter Area">
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="form-group">
-        <label for="location">Location (city)</label>
-        <input type="text" id="location" class="form-control" aria-describedby="location" placeholder="Enter location">
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <div class="form-group">
-        <label for="activity">Activity (Standing, Surfing etc...) </label>
-        <input type="text" id="activity" class="form-control" aria-describedby="activity" placeholder="Enter activity">
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group">
-        <label for="species">Species (White shark, Tiger shark etc..) </label>
-        <input type="text" id="species" class="form-control" aria-describedby="species" placeholder="Enter species">
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-group">
-        <label for="type">Type (Unprovoked, Provoked, Invalid etc..) </label>
-        <input type="text" id="type" class="form-control" aria-describedby="type" placeholder="Enter Type">
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9">
-      <div class="form-group">
-        <label for="injury">Injury - describe what happend </label>
-        <input style="height: 250px;" type="text" id="injury" class="form-control" aria-describedby="injury"
-          placeholder="Text">
-      </div>
-      <button id="submit1" class="btn btn-primary float-left">Submit1</button>
-
-    </div>
-  </div>
-
-</div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

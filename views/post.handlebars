@@ -1,0 +1,63 @@
+<div class="container">
+  <h1 class="align-middle text-center mt-4">{{msg}}</h1>
+  <div class="row">
+    <div class="col-3">
+      <form class="clearfix mb-4" action="POST">
+        <div class='form-group date' id='datetimepicker6'>
+          <label for="date">Date DD/MM/YY</label>
+          <input type="text" id="date" class="form-control" aria-describedby="date" placeholder="Enter date">
+        </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="country">Country </label>
+        <input type="text" id="country" class="form-control" aria-describedby="country" placeholder="Enter Country">
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="area">Area (state) </label>
+        <input type="text" id="area" class="form-control" aria-describedby="area" placeholder="Enter Area">
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="location">Location (city)</label>
+        <input type="text" id="location" class="form-control" aria-describedby="location" placeholder="Enter location">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="activity">Activity (Standing, Surfing etc...) </label>
+        <input type="text" id="activity" class="form-control" aria-describedby="activity" placeholder="Enter activity">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="species">Species (White shark, Tiger shark etc..) </label>
+        <input type="text" id="species" class="form-control" aria-describedby="species" placeholder="Enter species">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="type">Type (Unprovoked, Provoked, Invalid etc..) </label>
+        <input type="text" id="type" class="form-control" aria-describedby="type" placeholder="Enter Type">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
+      <div class="form-group">
+        <label for="injury">Injury - describe what happend </label>
+        <input style="height: 250px; text-align:left;  type="text" id="injury" class="form-control" aria-describedby="injury"
+          placeholder="Text">
+      </div>
+      <button id="submit" class="btn btn-primary float-left">Submit</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/post.js"></script>

@@ -10,6 +10,12 @@ module.exports = function(app) {
       });
     });
   });
+  //loading posting page
+  app.get("/post", function(req, res) {
+    res.render("post",{
+      msg: "Enter Your evidencee"
+    });
+  });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {

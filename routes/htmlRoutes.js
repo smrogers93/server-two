@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
   });
 
-
+  
 
   // write a post route to take a search term 
   // write a sequlize query that does a search and returns a list of results

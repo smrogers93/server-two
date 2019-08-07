@@ -1,45 +1,26 @@
-module.exports = function(sequelize, DataTypes) {
-  var SharkAttacks = sequelize.define("SharkAttacks", {
-    date: {
-      type: DataTypes.STRING,
-      defaultValue: "N/A"
-    },
-    year: {
-      type: DataTypes.INTEGER,
-      defaultValue: "N/A"
-    },
-    type: {
-      type: DataTypes.STRING,
-      defaultValue: "N/A"
-    },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    area: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    activity: {
-      type: DataTypes.STRING,
-      defaultValue: "No information"
-    },
-    species: {
-      type: DataTypes.STRING,
-      defaultValue: "N/A"
-    },
-    hasPDF: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: "FALSE"
-    },
-    pdf: {
-      type: DataTypes.STRING,
-      defaultValue: "No PDF available."
-    }
-  });
-  return SharkAttacks;
-}
+var orm = require("../config/orm.js");
+
+var SharkAttacks = {
+  all: function(cb) {
+    orm.selectAll("attacks", function(res) {
+      cb(res);
+    });
+  },
+  take: function(traits, desiredTraits, cb) {
+    orm.selectBase("attacks", traits, desiredTraits, function(res) {
+      cb(res);
+    });
+  },
+  create: function(traits, inputTraits, cb) {
+    orm.insertOne("attacks", traits, inputTraits, function(res) {
+      cb(res);
+    });
+  },
+  delete: function(trait, conditionalTrait, cb){
+    orm.delete(trait, conditionalTrait, function(res) {
+      cb(res);
+    });
+  }
+};
+
+module.exports = SharkAttacks;

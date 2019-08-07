@@ -1,70 +1,60 @@
-var db = require("../models");
+var db = require("../models/example.js");
 
 module.exports = function(app) {
   // Get all examples
   app.get("/api/attacks", function(req, res) {
-    db.SharkAttacks.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+    db.SharkAttacks.all(function(results) {
+      res.json(results);
     });
   });
 
   //get specific shark attack by year
   app.get("/api/attacks/:year", function(req, res) {
-    db.SharkAttacks.findAll({
-      where: {year = req.params.year}
-    }).then(function(results) {
+    db.SharkAttacks.take(["year"],[req.params.year], function(results){
       res.json(results);
     });
   });
 
   //get specific shark attack by country
   app.get("/api/attack/:country/:area?", function(req, res) {
-    var queries = {
-      country: req.params.country,
-      area: undefined
-    }
-    if(req.params.area){
-      queries.area = req.params.area;
-    } else {
-      delete queries.area;
-    }
-    db.SharkAttacks.findAll({
-      where: queries
-    }).then(function(results) {
+    var traitArray = ["country", "area"];
+    var conditionArray = [req.params.country, req.params.area];
+    db.SharkAttacks.take(traitArray, conditionArray, function(results) {
       res.json(results);
     });
   });
 
   //get specific shark attack by country and area
   app.get("/api/attack/:country/:area/:location?", function(req, res) {
-    var queries = {
-      country: req.params.country,
-      area: req.params.area,
-      location: undefined
-    }
-    if(req.params.location){
-      queries.location = req.params.location;
-    } else {
-      delete queries.location;
-    }
-    db.SharkAttacks.findAll({
-      where: queries
-    }).then(function(results) {
+    var traitArray = ["country", "area", "location"];
+    var conditionArray = [req.params.country, req.params.area, req.params.location];
+    db.SharkAttacks.take(traitArray, conditionArray, function(results) {
       res.json(results);
     });
   });
 
   // Create a new example
   app.post("/api/attacks", function(req, res) {
-    db.SharkAttacks.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+    var traitArray = ["date", "year", "type", "country", "area", "location", "injury", "species", "`href formula`"];
+    var conditionArray = [];
+    conditionArray.push(req.body.date);
+    conditionArray.push(req.body.year);
+    conditionArray.push(req.body.type);
+    conditionArray.push(req.body.country);
+    conditionArray.push(req.body.area);
+    conditionArray.push(req.body.location);
+    conditionArray.push(req.body.injury);
+    conditionArray.push(req.body.species);
+    conditionArray.push(req.body.href);
+    db.SharkAttacks.create(traitArray, conditionArray, function(results) {
+      res.json(results);
     });
   });
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
-    db.SharkAttacks.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+    db.SharkAttacks.delete("id", req.params.id, function(results) {
+      res.json(results);
     });
   });
 };

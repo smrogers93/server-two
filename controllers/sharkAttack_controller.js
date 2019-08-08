@@ -9,7 +9,7 @@ router.get("/", function(req, res) {
         var handlebarsObj = {
             examples: data
         };
-        console.log(handlebarsObj);
+        //console.log(handlebarsObj);
         res.render("index", handlebarsObj);
     });
 });

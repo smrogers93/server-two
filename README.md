@@ -31,7 +31,7 @@
 * Node and Express Web Server
 * MySQL and home made ORM
 * GET and POST routes
-* new thingy...
+* jquery ui
 * MVC folder/file structure
 * Polished UI, Quality Coding Standards (ESlint, Beautify)
 * env for MySQL key
